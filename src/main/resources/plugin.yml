@@ -1,0 +1,4 @@
+name: EmbarkkCore
+version: '${version}'
+main: org.spending.embarkkcore.EmbarkkCore
+api-version: 1.19
