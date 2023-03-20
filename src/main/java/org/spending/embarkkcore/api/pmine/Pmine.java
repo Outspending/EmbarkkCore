@@ -104,9 +104,8 @@ public class Pmine implements PmineHandler, ProfileHandler {
     * Adds a member to the pmine if the pmine is not full
      */
     public void addMemberIfNotMax(UUID uuid) {
-        if (!isMaxPlayers()) {
+        if (!isMaxPlayers())
             addMember(uuid);
-        }
     }
 
     /*

@@ -23,16 +23,12 @@ public class PmineAPI implements PmineHandler {
      * If the player doesn't have a profile, null will be returned
      */
     public static Pmine createPmine(String name, PlayerProfile owner) {
-        List<String> pmineNames = pmines.stream()
-                .map(Pmine::getName)
-                .toList();
+        Pmine mine = pmines.stream()
+                .filter(pmine -> pmine.getName().equalsIgnoreCase(name))
+                .findFirst()
+                .orElse(null);
 
-        if (pmineNames.contains(name))
-            return null;
-
-        Pmine pmine = new Pmine(name, owner);
-        pmines.add(pmine);
-        return pmine;
+        return mine != null ? mine : new Pmine(name, owner);
     }
 
     /*
@@ -82,10 +78,7 @@ public class PmineAPI implements PmineHandler {
         List<PlayerProfile> members = pmine.getData().getMembers();
         PlayerProfile profile = PlayerProfile.getProfile(player);
 
-        members.add(pmine.getData().getOwner());
-        if (profile != null)
-            return members.contains(profile);
-        return false;
+        return profile == pmine.getData().getOwner() || members.contains(profile);
     }
 
     /*
