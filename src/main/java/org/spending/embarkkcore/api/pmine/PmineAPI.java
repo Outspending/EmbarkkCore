@@ -11,10 +11,7 @@ public class PmineAPI implements PmineHandler {
     * Returns the pmine with the given name
      */
     public static Pmine getPmine(String name) {
-        return pmines.stream()
-                .filter(pmine -> pmine.getName().equalsIgnoreCase(name))
-                .findFirst()
-                .orElse(null);
+        return pmines.get(name);
     }
 
     /*
@@ -23,11 +20,7 @@ public class PmineAPI implements PmineHandler {
      * If the player doesn't have a profile, null will be returned
      */
     public static Pmine createPmine(String name, PlayerProfile owner) {
-        Pmine mine = pmines.stream()
-                .filter(pmine -> pmine.getName().equalsIgnoreCase(name))
-                .findFirst()
-                .orElse(null);
-
+        Pmine mine = pmines.get(name);
         return mine != null ? mine : new Pmine(name, owner);
     }
 

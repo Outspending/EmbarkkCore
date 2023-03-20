@@ -15,14 +15,14 @@ public class Pmine implements PmineHandler, ProfileHandler {
     public Pmine(String name) {
         this.name = name;
         this.data = new PmineData(this);
-        pmines.add(this);
+        pmines.put(name, this);
     }
 
     public Pmine(String name, PlayerProfile profile) {
         this.name = name;
         this.data = new PmineData(this);
         data.setOwner(profile);
-        pmines.add(this);
+        pmines.put(name, this);
     }
 
     /*
